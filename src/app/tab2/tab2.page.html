@@ -1,17 +1,55 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      covid19 vaccination appointment system
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+   <ion-card color="tertiary">
+     ASSESSMENT CENTER: {{this.data.location_id}} <br>
+     {{this.data.location_name}}
+     {{this.data.city}} Active: {{this.data.active}}
+   </ion-card>
+   <ion-card color="success">
+    <ion-button color="light" (click)="goAdd()">Add</ion-button>
+    <ion-button color="light" (click)="goUpdate()">Update</ion-button>
+    <ion-button color="light" (click)="goRetrieve()">Retrieve</ion-button>
+    <ion-button color="light" (click)="goDelete()">Delete</ion-button>
+    <ion-button color="light" (click)="goDeleteAll()">Delete All</ion-button>
+    <ion-button color="light" (click)="goExport()">Export</ion-button>
+    <ion-button color="light" (click)="goClear()">Clear</ion-button>
+   </ion-card>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+   <ion-card>
+    <ion-list> 
+      <ion-item>
+        CENTER NUMBER: {{this.data.location_id}}
+      </ion-item> 
+      <ion-item>
+        <ion-label position="stacked">DATE:</ion-label>
+        <ion-input required type="text" [(ngModel)]="date" name="date"></ion-input>  
+      </ion-item>         
+      <ion-item> 
+        <ion-label position="stacked">TIME:</ion-label> 
+        <ion-input required type="text" [(ngModel)]="time" name="time"></ion-input> 
+      </ion-item>  
+      <ion-item> 
+        <ion-label position="stacked">OHIP #:</ion-label>
+        <ion-input required type="text" [(ngModel)]="ohip" name="ohip"></ion-input>  
+      </ion-item>  
+      <ion-item> 
+        <ion-label position="stacked">EMAIL ADDRESS:</ion-label>
+        <ion-input required type="text" [(ngModel)]="email" name="email"></ion-input>  
+      </ion-item>  
+    </ion-list>
+   </ion-card>
+   <ion-card>
+    <ion-item *ngFor="let item of outRec, index as i">
+
+      <ion-col (click) = "clickit(item)">Center: {{item.location_id}}</ion-col>
+      {{item.date}}{{item.time}}{{item.ohip}}{{item.email}}
+    </ion-item>
+   </ion-card>
 </ion-content>
